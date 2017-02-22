@@ -69,6 +69,7 @@
 	local domain_name = session:getVariable("domain_name");
 	local extension_uuid = session:getVariable("extension_uuid");
 	local request_id = session:getVariable("request_id");
+	local direct_destination = session:getVariable("direct_destination");
 	local extension, dial_string
 
 --set the sounds path for the language, dialect and voice
@@ -149,6 +150,14 @@
 	local toll_allow = row.toll_allow or '';
 	local forward_caller_id_uuid = row.forward_caller_id_uuid;
 
+--check direct destination
+        if (direct_destination) then
+                log.noticef("Direct destination is set to %s", direct_destination);
+                forward_all_destination = direct_destination;
+        else
+                log.noticef("Direct destination is not set");
+        end
+	
 --toggle enabled
 	if enabled == "toggle" then
 		enabled = (forward_all_enabled == "true") and "false" or "true";
