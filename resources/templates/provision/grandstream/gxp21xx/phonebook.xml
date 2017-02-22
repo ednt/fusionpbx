@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AddressBook>
+{foreach $contacts as $row}
+{if $smarty.get.contacts == "users" &&$row.category == "groups"}
+    <Contact>
+{foreach $row.numbers as $number}
+{if $row.contact_name_given != ""}
+        <FirstName>{$row.contact_name_given}</FirstName>
+{/if}
+{if $row.contact_name_family != ""}
+{if $number.phone_label != ""}
+        <LastName>{$row.contact_name_family} {$row.contact_organization} ({$number.phone_label})</LastName>
+{else}
+        <LastName>{$row.contact_name_family} {$row.contact_organization}</LastName>
+{/if}
+{else}
+        <LastName>{$row.effective_caller_id_name}</LastName>
+{/if}
+        <Phone>
+{if $number.phone_number != ""}
+            <phonenumber>{$number.phone_number}</phonenumber>
+{else}
+            <phonenumber>{$number.phone_extension}</phonenumber>
+{/if}
+            <accountindex>1</accountindex>
+        </Phone>
+{/foreach}
+    </Contact>
+{/if}
+{/foreach}
+</AddressBook>
