@@ -1,7 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <gs_provision version="1">
   <config version="1">
-    <!-- Configuration Template For GXP21xx Firmware Version 1.0.5.32 -->
+    <!-- Configuration Template For GXP21xx Firmware Version 1.0.7.97 -->
+    <!-- P64 = PST8PDT -->
+    <P64>{$grandstream_gxp_time_zone}</P64>
+    <!-- Time Display Format. 0 - 12 Hour, 1 - 24 Hour. Default value is 1 -->
+    <!-- Number: 0, 1 -->
+    <P122>{$grandstream_gxp_time_format}</P122>
+    <!-- Screen saver 0 - disable, 1 - enable -->
+    <P2918>0</P2918>
     <!-- Account Settings -->
     <!-- Account 1 -->
     <!-- Account 1/General Settings -->
@@ -14,7 +21,9 @@
     <!-- Secondary SIP Server -->
     <P2312></P2312>
     <!-- Outbound Proxy -->
-    <P48></P48>
+    <P48>{$outbound_proxy_primary_1}</P48>
+    <!-- Backup Outbound Proxy -->
+    <P2333>{$outbound_proxy_secondary_1}</P2333>
     <!-- SIP User ID -->
     <P35>{$user_id_1}</P35>
     <!-- Authenticate ID -->
@@ -305,7 +314,7 @@
     <!-- Enable Call Features.  0 - No, 1 - Yes. Default is 1 -->
     <!-- Number: 0, 1 -->
     <!-- Mandatory -->
-    <P191>1</P191>
+    <P191>0</P191>
     <!-- Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log. Default is 0 -->
     <!-- Number: 0, 1, 2 -->
     <!-- Mandatory -->
@@ -2839,16 +2848,16 @@
     <!-- Enable Phonebook XML Download. # 0 - No, 1 - YES, HTTP, 2 - YES, TFTP, 3 - Yes, HTTPS. Default is 0 -->
     <!-- Number: 0, 1, 2, 3 -->
     <!-- Mandatory -->
-    <P330>0</P330>
+    <P330>3</P330>
     <!-- Phonebook XML Server Path -->
     <!-- This is a string of up to 256 characters that should contain a path to the XML file. It MUST be in the host/path format. -->
     <!-- For example: directory.grandstream.com/engineering -->
     <!-- String -->
-    <P331></P331>
+    <P331>{$domain_name}{$project_path}/app/provision/?contacts=users&file=</P331>
     <!-- Phonebook Download Interval (in minutes) -->
     <!-- Valid value range is 5-720. Default is 0 for disabled -->
     <!-- Number: 0, 5-720; -->
-    <P332>0</P332>
+    <P332>120</P332>
     <!-- Remove Manually-edited entries on Download. 0 - No, 1 - Yes. Default is 1 -->
     <!-- Number: 0, 1 -->
     <!-- Mandatory -->
@@ -3057,7 +3066,7 @@ Outgoing calls. 0 - No, 1 - Yes. Default is 0 -->
     <!-- 3: dddd, MMMM dd   eg. Monday, October 31 -->
     <!-- 4: MMMM dd, dddd   eg. October 31, Monday -->
     <!-- (some options might not fit for the screen layout) -->
-    <P102>1</P102>
+    <P102>{$grandstream_gxp_date_format}</P102>
     <!-- Handset TX gain(db). 1 - -6, 0 - 0, 2 - +6. Default is 0 -->
     <!-- Number: 0, 1, 2 -->
     <!-- Mandatory -->
@@ -3262,6 +3271,126 @@ Outgoing calls. 0 - No, 1 - Yes. Default is 0 -->
     <!-- User ID. Max length allowed is 64 characters. -->
     <!-- String -->
     <P1476>{$line_key_value_6}</P1476>
+    <!-- Line Keys GXP2170 -->
+    <!-- Line Key 7 -->
+    <!-- Key Mode. 0 - Line ,1 - Shared Line -->
+    <!-- 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF -->
+    <!-- 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail -->
+    <!-- 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search -->
+    <!-- Number: 0, 1, 10-21 -->
+    <!-- Mandatory -->
+    <P23800>{$line_key_type_7}</P23800>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 -->
+    <!-- For GXP2120 only: 4 - Account 5, 5- Account 6. -->
+    <!-- Number: 0-3 for GXP2100/2110/2120, 4 and 5 for GXP2120 only -->
+    <!-- Mandatory -->
+    <P23801>{$line_key_line_7}</P23801>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P23802>{$line_key_label_7}</P23802>
+    <!-- User ID. Max length allowed is 64 characters. -->
+    <!-- String -->
+    <P23803>{$line_key_value_7}</P23803>
+    <!-- Line Keys GXP2170 -->
+    <!-- Line Key 8 -->
+    <!-- Key Mode. 0 - Line ,1 - Shared Line -->
+    <!-- 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF -->
+    <!-- 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail -->
+    <!-- 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search -->
+    <!-- Number: 0, 1, 10-21 -->
+    <!-- Mandatory -->
+    <P23804>{$line_key_type_8}</P23804>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 -->
+    <!-- For GXP2120 only: 4 - Account 5, 5- Account 6. -->
+    <!-- Number: 0-3 for GXP2100/2110/2120, 4 and 5 for GXP2120 only -->
+    <!-- Mandatory -->
+    <P23805>{$line_key_line_8}</P23805>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P23806>{$line_key_label_8}</P23806>
+    <!-- User ID. Max length allowed is 64 characters. -->
+    <!-- String -->
+    <P23807>{$line_key_value_8}</P23807>
+    <!-- Line Keys GXP2170 -->
+    <!-- Line Key 9 -->
+    <!-- Key Mode. 0 - Line ,1 - Shared Line -->
+    <!-- 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF -->
+    <!-- 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail -->
+    <!-- 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search -->
+    <!-- Number: 0, 1, 10-21 -->
+    <!-- Mandatory -->
+    <P23808>{$line_key_type_9}</P23808>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 -->
+    <!-- For GXP2120 only: 4 - Account 5, 5- Account 6. -->
+    <!-- Number: 0-3 for GXP2100/2110/2120, 4 and 5 for GXP2120 only -->
+    <!-- Mandatory -->
+    <P23809>{$line_key_line_9}</P23809>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P23810>{$line_key_label_9}</P23810>
+    <!-- User ID. Max length allowed is 64 characters. -->
+    <!-- String -->
+    <P23811>{$line_key_value_9}</P23811>
+    <!-- Line Keys GXP2170 -->
+    <!-- Line Key 10 -->
+    <!-- Key Mode. 0 - Line ,1 - Shared Line -->
+    <!-- 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF -->
+    <!-- 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail -->
+    <!-- 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search -->
+    <!-- Number: 0, 1, 10-21 -->
+    <!-- Mandatory -->
+    <P23812>{$line_key_type_10}</P23812>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 -->
+    <!-- For GXP2120 only: 4 - Account 5, 5- Account 6. -->
+    <!-- Number: 0-3 for GXP2100/2110/2120, 4 and 5 for GXP2120 only -->
+    <!-- Mandatory -->
+    <P23813>{$line_key_line_10}</P23813>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P23814>{$line_key_label_10}</P23814>
+    <!-- User ID. Max length allowed is 64 characters. -->
+    <!-- String -->
+    <P23815>{$line_key_value_10}</P23815>
+     <!-- Line Keys GXP2170 -->
+    <!-- Line Key 11 -->
+    <!-- Key Mode. 0 - Line ,1 - Shared Line -->
+    <!-- 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF -->
+    <!-- 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail -->
+    <!-- 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search -->
+    <!-- Number: 0, 1, 10-21 -->
+    <!-- Mandatory -->
+    <P23816>{$line_key_type_11}</P23816>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 -->
+    <!-- For GXP2120 only: 4 - Account 5, 5- Account 6. -->
+    <!-- Number: 0-3 for GXP2100/2110/2120, 4 and 5 for GXP2120 only -->
+    <!-- Mandatory -->
+    <P23817>{$line_key_line_11}</P23817>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P23818>{$line_key_label_11}</P23818>
+    <!-- User ID. Max length allowed is 64 characters. -->
+    <!-- String -->
+    <P23819>{$line_key_value_11}</P23819>
+    <!-- Line Keys GXP2170 -->
+    <!-- Line Key 12 -->
+    <!-- Key Mode. 0 - Line ,1 - Shared Line -->
+    <!-- 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF -->
+    <!-- 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail -->
+    <!-- 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search -->
+    <!-- Number: 0, 1, 10-21 -->
+    <!-- Mandatory -->
+    <P23820>{$line_key_type_12}</P23820>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 -->
+    <!-- For GXP2120 only: 4 - Account 5, 5- Account 6. -->
+    <!-- Number: 0-3 for GXP2100/2110/2120, 4 and 5 for GXP2120 only -->
+    <!-- Mandatory -->
+    <P23821>{$line_key_line_12}</P23821>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P23822>{$line_key_label_12}</P23822>
+    <!-- User ID. Max length allowed is 64 characters. -->
+    <!-- String -->
+    <P23823>{$line_key_value_12}</P23823>
     <!-- End Line Keys. -->
     <!-- Account 5 and Account 6 setting is for GXP2120 only -->
     <!--  Multipurpose Key 1 -->
@@ -3589,6 +3718,114 @@ Outgoing calls. 0 - No, 1 - Yes. Default is 0 -->
     <!-- User ID. Max length allowed is 64 character -->
     <!-- String -->
     <P396>{$memory_key_value_18}</P396>
+    <!-- Multipurpose Key 19 -->
+    <!-- Key Mode. -->
+    <!-- 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF -->
+    <!-- 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn -->
+    <!-- 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search -->
+    <!-- Number: 0-11 -->
+    <!-- Mandatory -->
+    <P1440>{$memory_key_type_19}</P1440>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6 -->
+    <!-- Number: 0 - 5 -->
+    <!-- Mandatory -->
+    <P1441>{$memory_key_line_19}</P1441>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P1442>{$memory_key_label_19}</P1442>
+    <!-- User ID. Max length allowed is 64 character -->
+    <!-- String -->
+    <P1443>{$memory_key_value_19}</P1443>
+    <!-- Multipurpose Key 20 -->
+    <!-- Key Mode. -->
+    <!-- 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF -->
+    <!-- 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn -->
+    <!-- 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search -->
+    <!-- Number: 0-11 -->
+    <!-- Mandatory -->
+    <P1444>{$memory_key_type_20}</P1444>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6 -->
+    <!-- Number: 0 - 5 -->
+    <!-- Mandatory -->
+    <P1445>{$memory_key_line_20}</P1445>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P1446>{$memory_key_label_20}</P1446>
+    <!-- User ID. Max length allowed is 64 character -->
+    <!-- String -->
+    <P1447>{$memory_key_value_20}</P1447>
+    <!-- Multipurpose Key 21 -->
+    <!-- Key Mode. -->
+    <!-- 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF -->
+    <!-- 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn -->
+    <!-- 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search -->
+    <!-- Number: 0-11 -->
+    <!-- Mandatory -->
+    <P1448>{$memory_key_type_21}</P1448>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6 -->
+    <!-- Number: 0 - 5 -->
+    <!-- Mandatory -->
+    <P1449>{$memory_key_line_21}</P1449>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P1450>{$memory_key_label_21}</P1450>
+    <!-- User ID. Max length allowed is 64 character -->
+    <!-- String -->
+    <P1451>{$memory_key_value_21}</P1451>
+    <!-- Multipurpose Key 22 -->
+    <!-- Key Mode. -->
+    <!-- 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF -->
+    <!-- 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn -->
+    <!-- 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search -->
+    <!-- Number: 0-11 -->
+    <!-- Mandatory -->
+    <P1452>{$memory_key_type_22}</P1452>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6 -->
+    <!-- Number: 0 - 5 -->
+    <!-- Mandatory -->
+    <P1453>{$memory_key_line_22}</P1453>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P1454>{$memory_key_label_22}</P1454>
+    <!-- User ID. Max length allowed is 64 character -->
+    <!-- String -->
+    <P1455>{$memory_key_value_22}</P1455>
+    <!-- Multipurpose Key 23 -->
+    <!-- Key Mode. -->
+    <!-- 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF -->
+    <!-- 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn -->
+    <!-- 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search -->
+    <!-- Number: 0-11 -->
+    <!-- Mandatory -->
+    <P1456>{$memory_key_type_23}</P1456>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6 -->
+    <!-- Number: 0 - 5 -->
+    <!-- Mandatory -->
+    <P1457>{$memory_key_line_23}</P1457>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P1458>{$memory_key_label_23}</P1458>
+    <!-- User ID. Max length allowed is 64 character -->
+    <!-- String -->
+    <P1459>{$memory_key_value_23}</P1459>
+    <!-- Multipurpose Key 24 -->
+    <!-- Key Mode. -->
+    <!-- 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF -->
+    <!-- 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn -->
+    <!-- 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search -->
+    <!-- Number: 0-11 -->
+    <!-- Mandatory -->
+    <P1460>{$memory_key_type_24}</P1460>
+    <!-- Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6 -->
+    <!-- Number: 0 - 5 -->
+    <!-- Mandatory -->
+    <P1461>{$memory_key_line_24}</P1461>
+    <!-- Name. Max length allowed is 32 characters. -->
+    <!-- String -->
+    <P1462>{$memory_key_label_24}</P1462>
+    <!-- User ID. Max length allowed is 64 character -->
+    <!-- String -->
+    <P1463>{$memory_key_value_24}</P1463>
     <!-- Extension Boards FOR GXP2110 and GXP2120 ONLY -->
     <!-- Extension Board 1 Settings. mode 23000, line 23001, label, 23002, value 23003 -->
 {$start_id = 23000}
