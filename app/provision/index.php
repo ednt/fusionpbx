@@ -46,6 +46,7 @@
 	//if (strlen(check_str($_REQUEST['template'])) > 0) {
 	//	$device_template = check_str($_REQUEST['template']);
 	//}
+	$file = ltrim($file, '/'); // because Grandstream adds always /phonebook.xml to the given path
 
 //get the mac address for Cisco 79xx in the URL as &name=SEP000000000000
 	if (empty($mac)){
@@ -82,6 +83,11 @@
 				$mac = substr($_SERVER['HTTP_USER_AGENT'],-14);
 				$mac = preg_replace("#[^a-fA-F0-9./]#", "", $mac);
 			}
+		//Grandstream: $_SERVER['HTTP_USER_AGENT'] = "Grandstream Model HW GXP2140 SW 1.0.7.97 DevId 000b8283df53"
+                        if (substr($_SERVER['HTTP_USER_AGENT'],0,11) == "Grandstream") {
+                                $mac = substr($_SERVER['HTTP_USER_AGENT'],-12);
+                                $mac = preg_replace("#[^a-fA-F0-9./]#", "", $mac);
+                        }
 	}
 
 //prepare the mac address
